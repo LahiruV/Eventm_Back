@@ -76,8 +76,8 @@ router.route("/viewUserProfie/:username").get(async (req, res) => {
 });
 
 router.route("/deleteuser/:username").delete(async (req, res) => {
-    const username = req.params.code;
-    customerProfile.findOneAndDelete({ username: username })
+    const username = req.params.username;
+    customerProfile.findOneAndDelete({ email: username })
         .then(() => {
             res.status(200).send({ status: "User Deleted" });
 
