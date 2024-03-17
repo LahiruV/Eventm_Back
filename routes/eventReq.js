@@ -52,11 +52,11 @@ router.route('/addEventReq').post((req, res) => {
 //         });
 // });
 
-// router.route("/allappointment").get(async (req, res) => {
-//     appointment_Schema.find()
-//         .then(appointment => res.json(appointment))
-//         .catch(err => res.status(400).json('No Data'))
-// });
+router.route("/allEventReq").get(async (req, res) => {
+    eventReq_Schema.find()
+        .then(eventRequest => res.json(eventRequest))
+        .catch(err => res.status(400).json('No Data'))
+});
 
 // router.route("/allappointment/:userName").get(async (req, res) => {
 //     const userName = (req.params.userName)
