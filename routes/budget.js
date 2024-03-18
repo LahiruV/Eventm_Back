@@ -10,9 +10,7 @@ router.route('/addbudget').post((req, res) => {
 });
 
 router.route("/updatebudget/").put(async (req, res) => {
-    const { bid, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, name, mail } = req.body;
-    const status = req.body.estatus;
-
+    const { bid, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, name, mail,status } = req.body;    
     const budget = {
         bid, placeAbudget, placePbudget, crewAbudget, crewPbudget, promoAbudget, promoPbudget, fullBudget, name, status, mail
     }
