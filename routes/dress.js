@@ -42,7 +42,5 @@ router.route("/alldress").get(async (req, res) => {
         .catch(err => res.status(400).json('No Data'))
 });
 
-//devshan
-
 
 module.exports = router;
