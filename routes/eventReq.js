@@ -2,7 +2,7 @@ const router = require('express').Router();
 let eventReq_Schema = require('../models/eventReq');
 
 router.route('/addEventReq').post((req, res) => {
-    const { uniqueId, email, eventDate, eventTime, expectedGuests, eventType, venueDescription, venuePreference, accessibilityRequirements, staffRequired, estimatedBudgetRange, sponsorshipOpportunities, vendorsNeeded, numVendorBooths } = req.body;
+    const { uniqueId, email, eventDate, eventTime, expectedGuests, eventType, venueDescription, venuePreference, accessibilityRequirements, staffRequired, estimatedBudgetRange} = req.body;
     const eventRequest = new eventReq_Schema({
         uniqueId,
         email,
@@ -14,10 +14,7 @@ router.route('/addEventReq').post((req, res) => {
         venuePreference,
         accessibilityRequirements,
         staffRequired,
-        estimatedBudgetRange,
-        sponsorshipOpportunities,
-        vendorsNeeded,
-        numVendorBooths
+        estimatedBudgetRange        
     });
     eventRequest.save()
         .then(() => res.json('Event Request Added!'))

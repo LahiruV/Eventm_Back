@@ -47,19 +47,7 @@ const eventReq = new Schema(
         estimatedBudgetRange: {
             type: String,
             required: true
-        },
-        sponsorshipOpportunities: {
-            type: String,
-            required: true
-        },
-        vendorsNeeded: {
-            type: String,
-            required: true
-        },
-        numVendorBooths: {
-            type: String,
-            required: true
-        }
+        },        
     },
     {
         timestamps: true
