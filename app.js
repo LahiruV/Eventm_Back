@@ -54,6 +54,15 @@ app.use('/leave', leave);
 const employee = require('./routes/employee.js');
 app.use('/employee', employee);
 
+const crew = require('./routes/crew.js');
+app.use('/crew', crew);
+
+const place = require('./routes/place.js');
+app.use('/place', place);
+
+const sponsor = require('./routes/sponsor.js');
+app.use('/sponsor', sponsor);
+
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });
