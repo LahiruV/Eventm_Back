@@ -2,7 +2,7 @@ const router = require('express').Router();
 let eventReq_Schema = require('../models/eventReq');
 
 router.route('/addEventReq').post((req, res) => {
-    const { uniqueId, email, eventDate, eventTime, expectedGuests, eventType, venueDescription, venuePreference, accessibilityRequirements, staffRequired, estimatedBudgetRange,status} = req.body;
+    const { uniqueId, email, eventDate, eventTime, expectedGuests, eventType, venueDescription, venuePreference, accessibilityRequirements, staffRequired, estimatedBudgetRange, status } = req.body;
     const eventRequest = new eventReq_Schema({
         uniqueId,
         email,
@@ -14,41 +14,47 @@ router.route('/addEventReq').post((req, res) => {
         venuePreference,
         accessibilityRequirements,
         staffRequired,
-        estimatedBudgetRange  ,
-        status      
+        estimatedBudgetRange,
+        status
     });
     eventRequest.save()
         .then(() => res.json('Event Request Added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route("/updateEventReq/").put(async (req, res) => {
+    const { uniqueId, email, eventDate, eventTime, expectedGuests, eventType, venueDescription, venuePreference, accessibilityRequirements, staffRequired, estimatedBudgetRange, status } = req.body;
+    const eventRequest = {
+        uniqueId,
+        email,
+        eventDate,
+        eventTime,
+        expectedGuests,
+        eventType,
+        venueDescription,
+        venuePreference,
+        accessibilityRequirements,
+        staffRequired,
+        estimatedBudgetRange,
+        status
+    }
+    const update = await eventReq_Schema.findOneAndUpdate({ uniqueId: uniqueId }, eventRequest).then(() => {
+        res.status(200).send({ status: "Event Request Updated" });
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "Error with Updating Data", error: err.message });
+    });
+});
 
-// router.route("/updateAppointment/").put(async (req, res) => {
-//     const { username, name, email, phoneNo, nIC, date, paackage, time, userName } = req.body;
-
-//     const appointment = {
-//         name, email, phoneNo, nIC, date, paackage, time, userName
-//     }
-//     const update = await appointment_Schema.findOneAndUpdate({ name: username }, appointment).then(() => {
-//         res.status(200).send({ status: "Appointment Updated" });
-//     }).catch((err) => {
-//         console.log(err);
-//         res.status(500).send({ status: "Error with Updating Data", error: err.message });
-//     });
-// });
-
-// router.route("/deleteAppointment/:name").delete(async (req, res) => {
-//     let name = req.params.name;
-
-//     appointment_Schema.findOneAndDelete({ name: name })
-//         .then(() => {
-//             res.status(200).send({ status: "Appoiment Deleted" });
-
-//         }).catch((err) => {
-//             console.log(err);
-//             res.status(500).send({ status: "Error with Deleting Data", error: err.message });
-//         });
-// });
+router.route("/deleteEventReq/:id").delete(async (req, res) => {
+    const id = req.params.id;
+    await eventReq_Schema.findOneAndDelete({ uniqueId: id }).then(() => {
+        res.status(200).send({ status: "Event Request Deleted" });
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "Error with Deleting Data", error: err.message });
+    });
+});
 
 router.route("/allEventReq").get(async (req, res) => {
     eventReq_Schema.find()
