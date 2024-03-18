@@ -63,6 +63,9 @@ app.use('/place', place);
 const sponsor = require('./routes/sponsor.js');
 app.use('/sponsor', sponsor);
 
+const budget = require('./routes/budget.js');
+app.use('/budget', budget);
+
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });
