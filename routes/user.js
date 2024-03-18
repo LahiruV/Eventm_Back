@@ -76,8 +76,8 @@ router.route("/viewUserProfie/:username").get(async (req, res) => {
 });
 
 router.route("/deleteuser/:username").delete(async (req, res) => {
-    const username = req.params.code;
-    customerProfile.findOneAndDelete({ username: username })
+    const username = req.params.username;
+    customerProfile.findOneAndDelete({ email: username })
         .then(() => {
             res.status(200).send({ status: "User Deleted" });
 
@@ -156,5 +156,46 @@ router.route('/loginAdmin').post((req, res, next) => {
         })
 });
 
+router.route('/viewAllSystemReg').get(async (req, res) => {
+    try {
+        const systemRegs = await systemReg.find();
+        res.json(systemRegs);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error retrieving system registrations');
+    }
+});
+
+router.route("/viewSystemReg/:search").get(async (req, res) => {
+    systemReg.find({ userName: req.params.search })
+        .then(systemRegs => res.json(systemRegs))
+        .catch(err => res.status(400).json('No Data'))
+});
+
+router.route("/updateadmin/").put(async (req, res) => {
+    const { userName, phone, email, userType, password } = req.body;
+
+    const admin = {
+        userName, phone, email, userType, password
+    }
+    const update = await systemReg.findOneAndUpdate({ email: email }, admin).then(() => {
+        res.status(200).send({ status: "Updated" });
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send({ status: "Error with Updating Data", error: err.message });
+    });
+});
+
+router.route("/deleteadmin/:email").delete(async (req, res) => {
+    let email = req.params.email;
+    systemReg.findOneAndDelete({ email: email })
+        .then(() => {
+            res.status(200).send({ status: "Deleted" });
+
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).send({ status: "Error with Deleting Data", error: err.message });
+        });
+});
 
 module.exports = router;

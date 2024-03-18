@@ -24,6 +24,9 @@ connection.once('open', () => {
 const user = require('./routes/user.js');
 app.use('/user', user);
 
+const eventReq = require('./routes/eventReq.js');
+app.use('/eventReq', eventReq);
+
 const payment = require('./routes/payment.js');
 app.use('/payment', payment);
 
