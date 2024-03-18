@@ -38,6 +38,9 @@ const budget = new Schema(
         name: {
             type: String
         },
+        mail: {
+            type: String
+        },
         status: {
             type: String,
             default: "Active"
