@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const payment = new Schema({
 
     paymentID: {
-        type: String,
+        type: Number,
         required: true
     },
     budID: {
@@ -11,7 +11,7 @@ const payment = new Schema({
         required: true
     },
     cost: {
-        type: String,
+        type: Number,
         required: true
     },
     email: {
@@ -19,7 +19,7 @@ const payment = new Schema({
         required: true
     },
     status: {
-        type: Number,
+        type: String,
         required: true
     },
     date: {
