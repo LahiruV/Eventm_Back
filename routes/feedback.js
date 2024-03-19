@@ -15,8 +15,8 @@ router.route('/allfeedback').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/feedback/:id').get((req, res) => {
-    Feedback.findById(req.params.id)
+router.route('/feedback/:email').get((req, res) => {
+    Feedback.findById(req.params.email)
         .then(feedback => res.json(feedback))
         .catch(err => res.status(400).json('Error: ' + err));
 });
