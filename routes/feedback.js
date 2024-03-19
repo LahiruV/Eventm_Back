@@ -36,10 +36,11 @@ router.route('/updatefeedback/:id').put((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/deletefeedback/:id').delete((req, res) => {
-    Feedback.findByIdAndDelete(req.params.id)
+router.route('/deletefeedback/:feedbackId').delete((req, res) => {
+    Feedback.findOneAndDelete({feedbackId:req.params.feedbackId})
         .then(() => res.json('Feedback deleted successfully'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
+
 
 module.exports = router;
