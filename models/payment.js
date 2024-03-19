@@ -6,15 +6,15 @@ const payment = new Schema({
         type: String,
         required: true
     },
-    price: {
+    budID: {
         type: String,
         required: true
     },
-    type: {
+    cost: {
         type: String,
         required: true
     },
-    userName: {
+    email: {
         type: String,
         required: true
     },
@@ -22,13 +22,9 @@ const payment = new Schema({
         type: Number,
         required: true
     },
-    items: {
+    date: {
         type: String
     }, 
-    date: {
-        type: String,
-        required: true
-    },
 }, {
     timestamps: true
 });

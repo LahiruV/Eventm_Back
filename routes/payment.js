@@ -2,18 +2,18 @@ const router = require('express').Router();
 let payment_Schema = require('../models/payment');
 
 router.route('/addpayment').post((req, res) => {
-        const { paymentID, price, type, userName, status, items,date } = req.body;
-        const payment = new payment_Schema({ paymentID, price, type, userName, status, items,date });
+        const { paymentID, budID, cost, email, status, date } = req.body;
+        const payment = new payment_Schema({ paymentID, budID, cost, email, status, date });
         payment.save()
                 .then(() => res.json('Payment Add!'))
                 .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route("/updatepayment/").put(async (req, res) => {
-        const { paymentID, price, type, userName, status } = req.body;
+        const { paymentID, budID, cost, email, status, date } = req.body;
 
         const payment = {
-                paymentID, price, type, userName, status
+                paymentID, budID, cost, email, status, date
         }
         const update = await payment_Schema.findOneAndUpdate({ paymentID: paymentID }, payment).then(() => {
                 res.status(200).send({ status: "Payment Updated" });
