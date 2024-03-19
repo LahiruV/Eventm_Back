@@ -33,30 +33,6 @@ app.use('/eventReq', eventReq);
 const payment = require('./routes/payment.js');
 app.use('/payment', payment);
 
-const appointment = require('./routes/appointment.js');
-app.use('/appointment', appointment);
-
-const haircare = require('./routes/haircare.js');
-app.use('/haircare', haircare);
-
-const nailpedicare = require('./routes/nailpedicare.js');
-app.use('/nailpedicare', nailpedicare);
-
-const dress = require('./routes/dress.js');
-app.use('/dress', dress);
-
-const product = require('./routes/product.js');
-app.use('/product', product);
-
-const package = require('./routes/package.js');
-app.use('/package', package);
-
-const leave = require('./routes/leaves.js');
-app.use('/leave', leave);
-
-const employee = require('./routes/employee.js');
-app.use('/employee', employee);
-
 const crew = require('./routes/crew.js');
 app.use('/crew', crew);
 
