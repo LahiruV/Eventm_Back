@@ -24,6 +24,9 @@ connection.once('open', () => {
 const user = require('./routes/user.js');
 app.use('/user', user);
 
+const feedback = require('./routes/feedback.js');
+app.use('/feedback', feedback);
+
 const eventReq = require('./routes/eventReq.js');
 app.use('/eventReq', eventReq);
 
