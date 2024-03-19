@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 
 const crew = new Schema(
     {
+        crewID  : {
+            type: String,
+            required: true,
+            unique: true
+        },
         name: {
             type: String,
             required: true,
