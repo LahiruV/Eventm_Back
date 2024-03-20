@@ -33,14 +33,16 @@ app.use('/eventReq', eventReq);
 const payment = require('./routes/payment.js');
 app.use('/payment', payment);
 
-const crew = require('./routes/crew.js');
-app.use('/crew', crew);
+const crew = require('./routes/crews.js');
+app.use(crew);
 
-const place = require('./routes/place.js');
-app.use('/place', place);
+const place = require('./routes/places.js');
+app.use(place);
 
-const sponsor = require('./routes/sponsor.js');
-app.use('/sponsor', sponsor);
+const sponsor = require('./routes/sponsors.js');
+app.use(sponsor);
+
+
 
 const budget = require('./routes/budget.js');
 app.use('/budget', budget);
