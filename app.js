@@ -42,6 +42,9 @@ app.use(place);
 const sponsor = require('./routes/sponsors.js');
 app.use(sponsor);
 
+const chat = require('./routes/chat.js');
+app.use('/chat', chat);
+
 
 
 const budget = require('./routes/budget.js');
