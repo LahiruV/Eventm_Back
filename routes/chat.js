@@ -1,20 +1,20 @@
 const router = require('express').Router();
-let chat_Schema = require('../models/chat');
+const Chat = require('../models/chat');
 
-router.route('/addchat').post((req, res) => {
-    const { message, mail } = req.body;
-    const chat = new chat_Schema({ message, mail });
+
+router.post('/addchat', (req, res) => {
+    const {email, message, key} = req.body;
+    const chat = new Chat({ email, message, key });
+
     chat.save()
-        .then(() => res.json('Chat Add!'))
+        .then(() => res.json('Successfully!'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route("/allchat").get(async (req, res) => {
-    chat_Schema.find()
+router.get('/allchat', async (req, res) => {
+    Chat.find()
         .then(chat => res.json(chat))
-        .catch(err => res.status(400).json('No Data'))
+        .catch(err => res.status(400).json({ status: "No support requests found", error: err.message }));
 });
-
-
 
 module.exports = router;
