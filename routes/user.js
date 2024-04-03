@@ -166,6 +166,16 @@ router.route('/viewAllSystemReg').get(async (req, res) => {
     }
 });
 
+router.route('/viewAllCus').get(async (req, res) => {
+    try {
+        const customerProfile = await customerProfile.find();
+        res.json(customerProfile);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Error retrieving system registrations');
+    }
+});
+
 router.route("/viewSystemReg/:search").get(async (req, res) => {
     systemReg.find({ userName: req.params.search })
         .then(systemRegs => res.json(systemRegs))
