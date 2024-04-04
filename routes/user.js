@@ -168,8 +168,8 @@ router.route('/viewAllSystemReg').get(async (req, res) => {
 
 router.route('/viewAllCus').get(async (req, res) => {
     try {
-        const customerProfile = await customerProfile.find();
-        res.json(customerProfile);
+        const customerProfiles = await customerProfile.find();
+        res.json(customerProfiles);
     } catch (error) {
         console.log(error);
         res.status(500).send('Error retrieving system registrations');
