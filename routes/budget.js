@@ -40,5 +40,11 @@ router.route("/allbudgets").get(async (req, res) => {
         .catch(err => res.status(400).json('No Data'))
 });
 
+router.route("/allbudgets/:searchMail").get(async (req, res) => {
+    const mail = (req.params.searchMail)
+    budget_Schema.find({ mail: mail })
+        .then(budgets => res.json(budgets))
+        .catch(err => res.status(400).json('No Data'))
+});
 
 module.exports = router;
