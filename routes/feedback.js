@@ -15,6 +15,13 @@ router.route('/allfeedback').get((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route("/allfeedback/:searchMail").get(async (req, res) => {
+    const email = (req.params.searchMail)
+    Feedback.find({ email: email })
+        .then(feedback => res.json(feedback))
+        .catch(err => res.status(400).json('No Data'))
+});
+
 router.route("/updatefeedback/").put(async (req, res) => {
     const { feedbackId, email, description, rating } = req.body;
     const feedback = {
