@@ -100,5 +100,12 @@ router.route("/availabilityVenue").post(async (req, res) => {
     }
 });
 
+router.route("/allEventReq/:searchMail").get(async (req, res) => {
+    const email = (req.params.searchMail)
+    eventReq_Schema.find({ email: email })
+        .then(event => res.json(event))
+        .catch(err => res.status(400).json('No Data'))
+});
+
 
 module.exports = router;
