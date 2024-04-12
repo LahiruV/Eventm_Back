@@ -177,7 +177,7 @@ router.route('/viewAllCus').get(async (req, res) => {
 });
 
 router.route("/viewSystemReg/:search").get(async (req, res) => {
-    systemReg.find({ userName: req.params.search })
+    systemReg.find({ userType: req.params.search })
         .then(systemRegs => res.json(systemRegs))
         .catch(err => res.status(400).json('No Data'))
 });
