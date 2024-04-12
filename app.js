@@ -45,7 +45,8 @@ app.use(sponsor);
 const chat = require('./routes/chat.js');
 app.use('/chat', chat);
 
-
+const attend = require('./routes/attend.js');
+app.use('/attend', attend);
 
 const budget = require('./routes/budget.js');
 app.use('/budget', budget);
