@@ -62,17 +62,42 @@ router.route("/allEventReq").get(async (req, res) => {
         .catch(err => res.status(400).json('No Data'))
 });
 
-router.route("/availability").get(async (req, res) => {
-    const availability = await eventReq_Schema.find({
-        staffRequired:req.body.staffName,
-        eventDate:req.body.eventDate,
-        status:'Accepted'
-    })
+router.route("/availability").post(async (req, res) => {
+    try {
+        const availability = await eventReq_Schema.findOne({
+            staffRequired: req.body.crewName,
+            eventDate: req.body.eventDate,
+            status: 'Accepted'
+        });
 
-    if(availability){
-        res.status(400).json('Date is Booked Already')
+        if (availability) {
+            return res.status(200).send({ status: "Date is Booked Already" });
+        } else {
+            return res.status(200).send({ status: "You can book an event for this date" });
+        }
+    } catch (error) {
+        console.error("Server error", error);
+        res.status(500).send({ message: "Internal server error" });
     }
-    res.status(400).json('You can book an event for this date')
+});
+
+router.route("/availabilityVenue").post(async (req, res) => {
+    try {
+        const availability = await eventReq_Schema.findOne({
+            venuePreference: req.body.venuePreference,
+            eventDate: req.body.eventDate,
+            status: 'Accepted'
+        });
+
+        if (availability) {
+            return res.status(200).send({ status: "Date is Booked Already" });
+        } else {
+            return res.status(200).send({ status: "You can book an venue for this date" });
+        }
+    } catch (error) {
+        console.error("Server error", error);
+        res.status(500).send({ message: "Internal server error" });
+    }
 });
 
 
