@@ -41,11 +41,11 @@ router.route("/allpayment").get(async (req, res) => {
                 .catch(err => res.status(400).json('No Data'))
 });
 
-router.route("/allpayment/:type").get(async (req, res) => {
-        const type = (req.params.type)
-        payment_Schema.find({ type: type })
-                .then(payment => res.json(payment))
-                .catch(err => res.status(400).json('No Data'))
-});
+router.route("/allpayment/:searchMail").get(async (req, res) => {
+        const email = (req.params.searchMail)
+        payment_Schema.find({ email: email })
+            .then(event => res.json(event))
+            .catch(err => res.status(400).json('No Data'))
+    });
 
 module.exports = router;
