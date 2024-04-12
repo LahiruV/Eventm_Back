@@ -62,12 +62,18 @@ router.route("/allEventReq").get(async (req, res) => {
         .catch(err => res.status(400).json('No Data'))
 });
 
-// router.route("/allappointment/:userName").get(async (req, res) => {
-//     const userName = (req.params.userName)
-//     appointment_Schema.find({ userName: userName })
-//         .then(appointment => res.json(appointment))
-//         .catch(err => res.status(400).json('No Data'))
-// });
+router.route("/availability").get(async (req, res) => {
+    const availability = await eventReq_Schema.find({
+        staffRequired:req.body.staffName,
+        eventDate:req.body.eventDate,
+        status:'Accepted'
+    })
+
+    if(availability){
+        res.status(400).json('Date is Booked Already')
+    }
+    res.status(400).json('You can book an event for this date')
+});
 
 
 module.exports = router;
