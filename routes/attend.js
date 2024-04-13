@@ -4,8 +4,8 @@ const Attendance = require('../models/attend');
 // Add attendance
 router.post('/add', async (req, res) => {
     try {
-        const { sponsorID, date } = req.body;
-        const attendance = new Attendance({ sponsorID, date });
+        const { crewID, date } = req.body;
+        const attendance = new Attendance({ crewID, date });
         await attendance.save();
         res.json('Attendance added successfully!');
     } catch (error) {

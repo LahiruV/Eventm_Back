@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const attendSchema = new Schema({
-    sponsorID: {
+    crewID: {
         type: String,
         required: true
     },
